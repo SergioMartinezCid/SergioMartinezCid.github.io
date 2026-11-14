@@ -96,10 +96,12 @@ a:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-
 
 .contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 1rem; }
 
-.lema {
-  margin: 0; padding: 1.75rem 0 2.25rem; max-width: 40rem;
-  font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.4; letter-spacing: -0.01em;
-}
+.contenedor > section:first-child { border-top: 0; }
+
+/* Portada: solo en escritorio y con JavaScript (js/web.js la crea copiando la barra).
+   Es invisible; marca dónde empiezan el nombre, el puesto, los enlaces y el menú,
+   que se desplazan a la barra lateral según se hace scroll. */
+.portada { display: none; }
 
 @media (min-width: 62rem) {
   html { scroll-padding-top: 1.5rem; }
@@ -111,8 +113,8 @@ a:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-
   }
   .identidad { display: block; max-width: none; margin: 0; padding: 0; }
   .foto { display: block; width: 8.5rem; height: 8.5rem; margin-bottom: 1.25rem; }
-  .identidad h1 { font-size: 1.5rem; }
-  .cargo { font-size: 0.9rem; }
+  .identidad h1 { font-size: 1.5rem; width: fit-content; }
+  .cargo { font-size: 0.9rem; width: fit-content; }
   /* el botón de idioma, arriba a la derecha de la barra */
   .enlaces .idioma { position: absolute; top: 1.1rem; right: 1.1rem; }
   .enlaces a { background: var(--fondo); }
@@ -126,14 +128,22 @@ a:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-
   .menu a[aria-current] { background: var(--acento-suave); font-weight: 600; }
   main, .pie { margin-left: var(--lateral); }
   main .contenedor, .pie .contenedor { padding: 0 2.5rem; }
-  .lema { padding: 4.5rem 0 3rem; }
+
+  .lateral { z-index: 10; }
+  html.portada-activa .lateral { overflow: visible; }
+  html.portada-activa .portada { display: block; visibility: hidden; padding: 2.75rem 0 2.75rem; }
+  .nombre-portada { margin: 0; width: fit-content; font-size: 3rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
+  .portada .cargo { font-size: 1.15rem; margin-top: 0.75rem; }
+  .portada .enlaces { margin-top: 1.5rem; }
+  .menu-portada { display: flex; flex-wrap: wrap; gap: 0.15rem 0.3rem; list-style: none; margin: 1.5rem 0 0; padding: 0; }
+  .menu-portada a { display: block; padding: 0.35rem 0.8rem; border-radius: 6px; font-size: 0.97rem; }
 }
 /* Pantallas anchas pero bajas: barra más compacta para que quepa el menú */
 @media (min-width: 62rem) and (max-height: 50rem) {
   .lateral { padding-top: 1.75rem; }
   .foto { width: 6rem; height: 6rem; margin-bottom: 0.9rem; }
   .menu { margin-top: 1.1rem; }
-  .menu a { padding: 0.25rem 0.8rem; }
+  .menu a, .menu-portada a { padding: 0.25rem 0.8rem; }
 }
 
 /* ---------- Secciones ---------- */

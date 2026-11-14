@@ -80,8 +80,6 @@
 <main id="contenido">
 <div class="contenedor">
 
-<p class="lema">Explainable artificial intelligence that helps physiotherapists personalise rehabilitation, while leaving the final decision to them.</p>
-
 <section id="about">
   <h2>About</h2>
   <p>I am a postdoctoral researcher in the <a href="https://air.esi.uclm.es/">AIR</a> (Artificial Intelligence and Rendering) research group, at the Department of Information Technologies and Systems of the <a href="https://www.uclm.es">University of Castilla-La Mancha</a> (UCLM), and I work at the <a href="https://esi.uclm.es/">School of Computer Science</a> in Ciudad Real, Spain. I study how artificial intelligence can help physiotherapists personalise the rehabilitation of patients with neurological conditions, always leaving the final decision to them.</p>
@@ -317,25 +315,6 @@
     <p>Last updated: November 2026. This page uses no cookies and no tracking. <a href="../" hreflang="es" lang="es">Versión en español</a></p>
   </div>
 </footer>
-<script>
-/* Resalta en el menú la sección visible. Sin él, la página funciona igual. */
-(function () {
-  var enlaces = Array.prototype.slice.call(document.querySelectorAll('.menu a[href^="#"]'));
-  if (!('IntersectionObserver' in window) || !enlaces.length) return;
-  var porId = {};
-  enlaces.forEach(function (a) { porId[a.getAttribute('href').slice(1)] = a; });
-  var obs = new IntersectionObserver(function (entradas) {
-    entradas.forEach(function (e) {
-      if (!e.isIntersecting || !porId[e.target.id]) return;
-      enlaces.forEach(function (a) { a.removeAttribute('aria-current'); });
-      var a = porId[e.target.id];
-      a.setAttribute('aria-current', 'location');
-      var ul = a.closest('ul');
-      if (ul.scrollWidth > ul.clientWidth) ul.scrollLeft = a.offsetLeft - ul.clientWidth / 2 + a.offsetWidth / 2;
-    });
-  }, { rootMargin: '-25% 0px -65% 0px' });
-  document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
-})();
-</script>
+<script src="../js/web.js"></script>
 </body>
 </html>
