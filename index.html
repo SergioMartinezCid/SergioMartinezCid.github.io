@@ -14,6 +14,10 @@
 <meta property="og:title" content="Sergio Martínez Cid">
 <meta property="og:description" content="Investigador postdoctoral en la Universidad de Castilla-La Mancha (grupo AIR). Inteligencia artificial explicable para apoyar la rehabilitación física.">
 <meta property="og:url" content="https://www.esi.uclm.es/www/sergio.martinezcid/">
+<meta property="og:image" content="https://www.esi.uclm.es/www/sergio.martinezcid/img/sergio.jpg">
+<meta property="og:image:width" content="340">
+<meta property="og:image:height" content="340">
+<meta property="og:image:alt" content="Foto de Sergio Martínez Cid">
 <meta property="og:locale" content="es_ES">
 <meta property="og:locale:alternate" content="en_GB">
 <meta name="theme-color" content="#fbfaf8" media="(prefers-color-scheme: light)">
@@ -26,6 +30,7 @@
   "@type": "Person",
   "name": "Sergio Martínez Cid",
   "jobTitle": "Investigador postdoctoral",
+  "image": "https://www.esi.uclm.es/www/sergio.martinezcid/img/sergio.jpg",
   "url": "https://www.esi.uclm.es/www/sergio.martinezcid/",
   "email": "mailto:sergio.martinezcid@uclm.es",
   "affiliation": {"@type": "CollegeOrUniversity", "name": "Universidad de Castilla-La Mancha", "url": "https://www.uclm.es"},
@@ -42,8 +47,22 @@
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 
-<nav class="menu" aria-label="Secciones">
-  <div class="contenedor">
+<header class="lateral">
+  <div class="identidad">
+    <img class="foto" src="img/sergio.jpg" alt="Foto de Sergio Martínez Cid" width="340" height="340">
+    <div>
+      <h1>Sergio Martínez Cid</h1>
+      <p class="cargo">Investigador postdoctoral<br>Universidad de Castilla-La Mancha<br>Grupo AIR</p>
+    </div>
+    <ul class="enlaces">
+      <li><a href="mailto:sergio.martinezcid@uclm.es">Correo</a></li>
+      <li><a href="https://orcid.org/0009-0009-8976-4974">ORCID</a></li>
+      <li><a href="https://scholar.google.es/citations?user=ztp9qcgAAAAJ&amp;hl=es">Google Scholar</a></li>
+      <li><a href="https://github.com/SergioMartinezCid">GitHub</a></li>
+      <li><a class="idioma" href="en/" hreflang="en" lang="en" title="English version">EN</a></li>
+    </ul>
+  </div>
+  <nav class="menu" aria-label="Secciones">
     <ul>
       <li><a href="#sobre-mi">Sobre mí</a></li>
       <li><a href="#novedades">Novedades</a></li>
@@ -55,26 +74,13 @@
       <li><a href="#premios">Premios</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
-  </div>
-</nav>
-
-<main id="contenido" class="contenedor">
-
-<header class="cabecera">
-  <a class="idioma" href="en/" hreflang="en" lang="en" title="English version">EN</a>
-  <!-- Foto (cuando la tengas): <img class="foto" src="img/sergio.jpg" alt="Sergio Martínez Cid" width="288" height="288"> -->
-  <div>
-    <h1>Sergio Martínez Cid</h1>
-    <p class="cargo">Investigador postdoctoral · Universidad de Castilla-La Mancha · Grupo AIR</p>
-    <p class="lema">Inteligencia artificial explicable para ayudar a los fisioterapeutas a personalizar la rehabilitación, dejando en sus manos la decisión final.</p>
-    <ul class="enlaces">
-      <li><a href="mailto:sergio.martinezcid@uclm.es">Correo</a></li>
-      <li><a href="https://orcid.org/0009-0009-8976-4974">ORCID</a></li>
-      <li><a href="https://scholar.google.es/citations?user=ztp9qcgAAAAJ&amp;hl=es">Google Scholar</a></li>
-      <li><a href="https://github.com/SergioMartinezCid">GitHub</a></li>
-    </ul>
-  </div>
+  </nav>
 </header>
+
+<main id="contenido">
+<div class="contenedor">
+
+<p class="lema">Inteligencia artificial explicable para ayudar a los fisioterapeutas a personalizar la rehabilitación, dejando en sus manos la decisión final.</p>
 
 <section id="sobre-mi">
   <h2>Sobre mí</h2>
@@ -302,6 +308,7 @@
   <p>Escuela Superior de Informática · Universidad de Castilla-La Mancha<br>Paseo de la Universidad, 4 · 13071 Ciudad Real</p>
 </section>
 
+</div>
 </main>
 
 <footer class="pie">
@@ -310,5 +317,25 @@
     <p>Última actualización: noviembre de 2026. Esta página no usa cookies ni seguimiento. <a href="en/" hreflang="en" lang="en">English version</a></p>
   </div>
 </footer>
+<script>
+/* Resalta en el menú la sección visible. Sin él, la página funciona igual. */
+(function () {
+  var enlaces = Array.prototype.slice.call(document.querySelectorAll('.menu a[href^="#"]'));
+  if (!('IntersectionObserver' in window) || !enlaces.length) return;
+  var porId = {};
+  enlaces.forEach(function (a) { porId[a.getAttribute('href').slice(1)] = a; });
+  var obs = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e) {
+      if (!e.isIntersecting || !porId[e.target.id]) return;
+      enlaces.forEach(function (a) { a.removeAttribute('aria-current'); });
+      var a = porId[e.target.id];
+      a.setAttribute('aria-current', 'location');
+      var ul = a.closest('ul');
+      if (ul.scrollWidth > ul.clientWidth) ul.scrollLeft = a.offsetLeft - ul.clientWidth / 2 + a.offsetWidth / 2;
+    });
+  }, { rootMargin: '-25% 0px -65% 0px' });
+  document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
+})();
+</script>
 </body>
 </html>

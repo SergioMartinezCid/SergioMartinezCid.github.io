@@ -14,6 +14,10 @@
 <meta property="og:title" content="Sergio Martínez Cid">
 <meta property="og:description" content="Postdoctoral researcher at the University of Castilla-La Mancha (AIR group). Explainable artificial intelligence to support physical rehabilitation.">
 <meta property="og:url" content="https://www.esi.uclm.es/www/sergio.martinezcid/en/">
+<meta property="og:image" content="https://www.esi.uclm.es/www/sergio.martinezcid/img/sergio.jpg">
+<meta property="og:image:width" content="340">
+<meta property="og:image:height" content="340">
+<meta property="og:image:alt" content="Photo of Sergio Martínez Cid">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="es_ES">
 <meta name="theme-color" content="#fbfaf8" media="(prefers-color-scheme: light)">
@@ -26,6 +30,7 @@
   "@type": "Person",
   "name": "Sergio Martínez Cid",
   "jobTitle": "Postdoctoral researcher",
+  "image": "https://www.esi.uclm.es/www/sergio.martinezcid/img/sergio.jpg",
   "url": "https://www.esi.uclm.es/www/sergio.martinezcid/en/",
   "email": "mailto:sergio.martinezcid@uclm.es",
   "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Castilla-La Mancha", "url": "https://www.uclm.es"},
@@ -42,8 +47,22 @@
 <body>
 <a class="saltar" href="#contenido">Skip to content</a>
 
-<nav class="menu" aria-label="Sections">
-  <div class="contenedor">
+<header class="lateral">
+  <div class="identidad">
+    <img class="foto" src="../img/sergio.jpg" alt="Photo of Sergio Martínez Cid" width="340" height="340">
+    <div>
+      <h1>Sergio Martínez Cid</h1>
+      <p class="cargo">Postdoctoral researcher<br>University of Castilla-La Mancha<br>AIR group</p>
+    </div>
+    <ul class="enlaces">
+      <li><a href="mailto:sergio.martinezcid@uclm.es">Email</a></li>
+      <li><a href="https://orcid.org/0009-0009-8976-4974">ORCID</a></li>
+      <li><a href="https://scholar.google.es/citations?user=ztp9qcgAAAAJ&amp;hl=en">Google Scholar</a></li>
+      <li><a href="https://github.com/SergioMartinezCid">GitHub</a></li>
+      <li><a class="idioma" href="../" hreflang="es" lang="es" title="Versión en español">ES</a></li>
+    </ul>
+  </div>
+  <nav class="menu" aria-label="Sections">
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#news">News</a></li>
@@ -55,26 +74,13 @@
       <li><a href="#awards">Awards</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-  </div>
-</nav>
-
-<main id="contenido" class="contenedor">
-
-<header class="cabecera">
-  <a class="idioma" href="../" hreflang="es" lang="es" title="Versión en español">ES</a>
-  <!-- Photo (when available): <img class="foto" src="../img/sergio.jpg" alt="Sergio Martínez Cid" width="288" height="288"> -->
-  <div>
-    <h1>Sergio Martínez Cid</h1>
-    <p class="cargo">Postdoctoral researcher · University of Castilla-La Mancha · AIR group</p>
-    <p class="lema">Explainable artificial intelligence that helps physiotherapists personalise rehabilitation, while leaving the final decision to them.</p>
-    <ul class="enlaces">
-      <li><a href="mailto:sergio.martinezcid@uclm.es">Email</a></li>
-      <li><a href="https://orcid.org/0009-0009-8976-4974">ORCID</a></li>
-      <li><a href="https://scholar.google.es/citations?user=ztp9qcgAAAAJ&amp;hl=en">Google Scholar</a></li>
-      <li><a href="https://github.com/SergioMartinezCid">GitHub</a></li>
-    </ul>
-  </div>
+  </nav>
 </header>
+
+<main id="contenido">
+<div class="contenedor">
+
+<p class="lema">Explainable artificial intelligence that helps physiotherapists personalise rehabilitation, while leaving the final decision to them.</p>
 
 <section id="about">
   <h2>About</h2>
@@ -302,6 +308,7 @@
   <p>School of Computer Science · University of Castilla-La Mancha<br>Paseo de la Universidad, 4 · 13071 Ciudad Real, Spain</p>
 </section>
 
+</div>
 </main>
 
 <footer class="pie">
@@ -310,5 +317,25 @@
     <p>Last updated: November 2026. This page uses no cookies and no tracking. <a href="../" hreflang="es" lang="es">Versión en español</a></p>
   </div>
 </footer>
+<script>
+/* Resalta en el menú la sección visible. Sin él, la página funciona igual. */
+(function () {
+  var enlaces = Array.prototype.slice.call(document.querySelectorAll('.menu a[href^="#"]'));
+  if (!('IntersectionObserver' in window) || !enlaces.length) return;
+  var porId = {};
+  enlaces.forEach(function (a) { porId[a.getAttribute('href').slice(1)] = a; });
+  var obs = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e) {
+      if (!e.isIntersecting || !porId[e.target.id]) return;
+      enlaces.forEach(function (a) { a.removeAttribute('aria-current'); });
+      var a = porId[e.target.id];
+      a.setAttribute('aria-current', 'location');
+      var ul = a.closest('ul');
+      if (ul.scrollWidth > ul.clientWidth) ul.scrollLeft = a.offsetLeft - ul.clientWidth / 2 + a.offsetWidth / 2;
+    });
+  }, { rootMargin: '-25% 0px -65% 0px' });
+  document.querySelectorAll('main section[id]').forEach(function (s) { obs.observe(s); });
+})();
+</script>
 </body>
 </html>

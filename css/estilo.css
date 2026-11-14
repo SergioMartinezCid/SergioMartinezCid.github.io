@@ -9,7 +9,8 @@
   --linea: #e2ddd6;
   --acento: #8a1538;        /* granate UCLM */
   --acento-suave: #f5e6ea;
-  --ancho: 52rem;
+  --ancho: 48rem;
+  --lateral: 19rem;
   --fuente: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color-scheme: light;
 }
@@ -52,52 +53,87 @@ a:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-
 }
 .saltar:focus { left: 1rem; }
 
-.contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 1rem; }
+/* ---------- Estructura ----------
+   Móvil: identidad arriba, menú horizontal fijo al hacer scroll y contenido debajo.
+   Escritorio (≥ 62rem): barra lateral fija a la izquierda con foto, enlaces y menú. */
 
-/* ---------- Menú ---------- */
+.lateral { display: contents; }
+
+.identidad {
+  display: grid; grid-template-columns: auto 1fr; gap: 0 1rem; align-items: center;
+  max-width: var(--ancho); margin: 0 auto; padding: 2rem 1rem 1.25rem;
+}
+.foto { width: 5.5rem; height: 5.5rem; border-radius: 50%; object-fit: cover; border: 1px solid var(--linea); background: #fff; }
+.identidad h1 { font-size: 1.6rem; line-height: 1.15; margin: 0; letter-spacing: -0.02em; }
+.cargo { margin: 0.35rem 0 0; color: var(--suave); font-size: 0.92rem; line-height: 1.45; }
+
+.enlaces { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+.enlaces a {
+  display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px;
+  border: 1px solid var(--linea); background: var(--fondo-alt);
+  color: var(--texto); text-decoration: none; font-size: 0.88rem;
+}
+.enlaces a:hover { border-color: var(--acento); color: var(--acento); }
+.enlaces .idioma { font-weight: 650; letter-spacing: 0.04em; }
+
 .menu {
   position: sticky; top: 0; z-index: 5;
   background: color-mix(in srgb, var(--fondo) 92%, transparent);
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--linea);
+  border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea);
 }
-.menu .contenedor { display: flex; align-items: center; }
 .menu ul {
-  display: flex; gap: 0.95rem; list-style: none; margin: 0; padding: 0.75rem 0;
-  overflow-x: auto; scrollbar-width: none; flex: 1;
+  display: flex; gap: 0.95rem; list-style: none;
+  max-width: var(--ancho); margin: 0 auto; padding: 0.75rem 2rem 0.75rem 1rem;
+  overflow-x: auto; scrollbar-width: none;
+  /* el degradado indica que hay más enlaces a la derecha */
+  -webkit-mask-image: linear-gradient(to right, #000 85%, transparent);
+  mask-image: linear-gradient(to right, #000 85%, transparent);
 }
 .menu ul::-webkit-scrollbar { display: none; }
-.menu a { color: var(--suave); text-decoration: none; font-size: 0.88rem; white-space: nowrap; }
-/* En pantallas anchas, si no cabe, el menú baja a una segunda línea en vez de ocultar enlaces */
-@media (min-width: 48rem) { .menu ul { flex-wrap: wrap; row-gap: 0.25rem; overflow: visible; } }
-/* En el móvil el menú se desplaza en horizontal; el degradado indica que hay más */
-@media (max-width: 47.99rem) { .menu ul { -webkit-mask-image: linear-gradient(to right, #000 85%, transparent); mask-image: linear-gradient(to right, #000 85%, transparent); padding-right: 2rem; } }
-.menu a:hover { color: var(--texto); }
-.idioma {
-  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em;
-  border: 1px solid var(--linea); border-radius: 999px; padding: 0.15rem 0.6rem;
-  color: var(--texto); text-decoration: none; white-space: nowrap;
+.menu a { color: var(--suave); text-decoration: none; font-size: 0.9rem; white-space: nowrap; }
+.menu a:hover, .menu a[aria-current] { color: var(--acento); }
+
+.contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 1rem; }
+
+.lema {
+  margin: 0; padding: 1.75rem 0 2.25rem; max-width: 40rem;
+  font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.4; letter-spacing: -0.01em;
 }
 
-/* ---------- Cabecera ---------- */
-.cabecera { position: relative; padding: 3.5rem 0 2.5rem; display: grid; gap: 1.75rem; grid-template-columns: 1fr; align-items: center; }
-.cabecera:has(.foto) { grid-template-columns: auto 1fr; }
-.cabecera .idioma { position: absolute; top: 1.25rem; right: 0; }
-.foto { width: 9rem; height: 9rem; border-radius: 50%; object-fit: cover; border: 1px solid var(--linea); }
-.cabecera h1 { font-size: clamp(2rem, 6vw, 2.75rem); line-height: 1.15; margin: 0; letter-spacing: -0.02em; }
-.cargo { margin: 0.4rem 0 0; color: var(--suave); }
-.lema { margin: 1rem 0 0; font-size: 1.15rem; max-width: 38rem; }
-.enlaces { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.4rem 0 0; padding: 0; list-style: none; }
-.enlaces a {
-  display: inline-block; padding: 0.3rem 0.85rem; border-radius: 999px;
-  border: 1px solid var(--linea); background: var(--fondo-alt);
-  color: var(--texto); text-decoration: none; font-size: 0.92rem;
+@media (min-width: 62rem) {
+  html { scroll-padding-top: 1.5rem; }
+  .lateral {
+    display: flex; flex-direction: column;
+    position: fixed; top: 0; bottom: 0; left: 0; width: var(--lateral);
+    overflow-y: auto; background: var(--fondo-alt); border-right: 1px solid var(--linea);
+    padding: 2.75rem 1.6rem 2rem;
+  }
+  .identidad { display: block; max-width: none; margin: 0; padding: 0; }
+  .foto { display: block; width: 8.5rem; height: 8.5rem; margin-bottom: 1.25rem; }
+  .identidad h1 { font-size: 1.5rem; }
+  .cargo { font-size: 0.9rem; }
+  /* el botón de idioma, arriba a la derecha de la barra */
+  .enlaces .idioma { position: absolute; top: 1.1rem; right: 1.1rem; }
+  .enlaces a { background: var(--fondo); }
+  .menu { position: static; background: none; backdrop-filter: none; border: 0; margin-top: 1.75rem; }
+  .menu ul {
+    flex-direction: column; gap: 0.15rem; max-width: none; margin: 0; padding: 0;
+    overflow: visible; -webkit-mask-image: none; mask-image: none;
+  }
+  .menu a { display: block; padding: 0.35rem 0.8rem; border-radius: 6px; font-size: 0.97rem; }
+  .menu a:hover { background: var(--fondo); }
+  .menu a[aria-current] { background: var(--acento-suave); font-weight: 600; }
+  main, .pie { margin-left: var(--lateral); }
+  main .contenedor, .pie .contenedor { padding: 0 2.5rem; }
+  .lema { padding: 4.5rem 0 3rem; }
 }
-.enlaces a:hover { border-color: var(--acento); color: var(--acento); }
-
-@media (max-width: 34rem) {
-  .cabecera:has(.foto) { grid-template-columns: 1fr; }
-  .foto { width: 7rem; height: 7rem; }
+/* Pantallas anchas pero bajas: barra más compacta para que quepa el menú */
+@media (min-width: 62rem) and (max-height: 50rem) {
+  .lateral { padding-top: 1.75rem; }
+  .foto { width: 6rem; height: 6rem; margin-bottom: 0.9rem; }
+  .menu { margin-top: 1.1rem; }
+  .menu a { padding: 0.25rem 0.8rem; }
 }
 
 /* ---------- Secciones ---------- */
