@@ -45,6 +45,17 @@
 </script>
 </head>
 <body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-persona" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 7-7h2a7 7 0 0 1 7 7v1"/></symbol>
+  <symbol id="i-novedades" viewBox="0 0 24 24"><path d="M4 4h13v15a2 2 0 0 0 2 2H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v11a2 2 0 0 1-2 2"/><path d="M8 8h5M8 12h5M8 16h5"/></symbol>
+  <symbol id="i-investigacion" viewBox="0 0 24 24"><path d="M9 3h6"/><path d="M10 3v6.5L4.6 18.2A1.8 1.8 0 0 0 6.1 21h11.8a1.8 1.8 0 0 0 1.5-2.8L14 9.5V3"/><path d="M7.5 15h9"/></symbol>
+  <symbol id="i-publicaciones" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-software" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/><path d="m13.5 4-3 16"/></symbol>
+  <symbol id="i-docencia" viewBox="0 0 24 24"><path d="M22 9 12 4 2 9l10 5z"/><path d="M6 11.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/><path d="M22 9v5"/></symbol>
+  <symbol id="i-trayectoria" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></symbol>
+  <symbol id="i-premios" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.6 14 7 22l5-3 5 3-1.6-8"/></symbol>
+  <symbol id="i-contacto" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+</svg>
 <a class="saltar" href="#contenido">Skip to content</a>
 
 <header class="lateral">
@@ -64,15 +75,15 @@
   </div>
   <nav class="menu" aria-label="Sections">
     <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#news">News</a></li>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#publications">Publications</a></li>
-      <li><a href="#software">Software</a></li>
-      <li><a href="#teaching">Teaching</a></li>
-      <li><a href="#career">Career</a></li>
-      <li><a href="#awards">Awards</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about"><svg class="icono" aria-hidden="true"><use href="#i-persona"/></svg>About</a></li>
+      <li><a href="#news"><svg class="icono" aria-hidden="true"><use href="#i-novedades"/></svg>News</a></li>
+      <li><a href="#research"><svg class="icono" aria-hidden="true"><use href="#i-investigacion"/></svg>Research</a></li>
+      <li><a href="#publications"><svg class="icono" aria-hidden="true"><use href="#i-publicaciones"/></svg>Publications</a></li>
+      <li><a href="#software"><svg class="icono" aria-hidden="true"><use href="#i-software"/></svg>Software</a></li>
+      <li><a href="#teaching"><svg class="icono" aria-hidden="true"><use href="#i-docencia"/></svg>Teaching</a></li>
+      <li><a href="#career"><svg class="icono" aria-hidden="true"><use href="#i-trayectoria"/></svg>Career</a></li>
+      <li><a href="#awards"><svg class="icono" aria-hidden="true"><use href="#i-premios"/></svg>Awards</a></li>
+      <li><a href="#contact"><svg class="icono" aria-hidden="true"><use href="#i-contacto"/></svg>Contact</a></li>
     </ul>
   </nav>
 </header>
@@ -89,7 +100,7 @@
 </div>
 
 <section id="about">
-  <h2>About</h2>
+  <h2><svg class="icono" aria-hidden="true"><use href="#i-persona"/></svg>About</h2>
   <p>I am a postdoctoral researcher in the <a href="https://air.esi.uclm.es/">AIR</a> (Artificial Intelligence and Rendering) research group, at the Department of Information Technologies and Systems of the <a href="https://www.uclm.es">University of Castilla-La Mancha</a> (UCLM), and I work at the <a href="https://esi.uclm.es/">School of Computer Science</a> in Ciudad Real, Spain. I study how artificial intelligence can help physiotherapists personalise the rehabilitation of patients with neurological conditions, always leaving the final decision to them.</p>
   <p>In my PhD I designed a fuzzy-logic decision support system that adjusts each patient's routines according to how they perform them and explains each recommendation to the physiotherapist, and a model that estimates the patient's fatigue during virtual reality exercises and compares it with the patient's self-perception. Both come together in <a href="#software">Physio Galenus</a>, an open-source platform. I designed them with therapists at the Hospital Nacional de Parapléjicos in Toledo and we tested them with their patients.</p>
   <p>During my research stay at Aston University (United Kingdom) I coupled a language model to this system, with a calibrated estimate of the uncertainty of each proposal. I also work with locally deployed language models to generate patient-oriented clinical sheets from teleconsultations.</p>
@@ -97,7 +108,7 @@
 </section>
 
 <section id="news">
-  <h2>News</h2>
+  <h2><svg class="icono" aria-hidden="true"><use href="#i-novedades"/></svg>News</h2>
   <ul class="fechas">
     <li><time datetime="2026-10">Oct 2026</time><div>I defended my PhD thesis at the UCLM, supervised by <a href="https://www.esi.uclm.es/www/David.Vallejo/">David Vallejo Fernández</a> and <a href="https://www.esi.uclm.es/www/santiago.sanchez/">Santiago Sánchez Sobrino</a>, with the International and Industrial Doctorate mentions. Grade: Sobresaliente (Outstanding).</div></li>
     <li><time datetime="2026-09">Sep 2026</time><div>At NiDS 2026 (Athens, remotely) I presented how to generate patient-oriented clinical sheets from teleconsultations with locally deployed language models.</div></li>
@@ -107,7 +118,7 @@
 </section>
 
 <section id="research">
-  <h2>Research</h2>
+  <h2><svg class="icono" aria-hidden="true"><use href="#i-investigacion"/></svg>Research</h2>
   <p>My work combines explainable artificial intelligence, decision support systems and virtual and augmented reality for physical rehabilitation.</p>
   <ul class="temas">
     <li>Explainable artificial intelligence</li>
@@ -132,7 +143,7 @@
 </section>
 
 <section id="publications">
-  <h2>Publications</h2>
+  <h2><svg class="icono" aria-hidden="true"><use href="#i-publicaciones"/></svg>Publications</h2>
 
   <h3>Journals</h3>
   <ul class="pubs">
@@ -241,7 +252,7 @@
 </section>
 
 <section id="software">
-  <h2>Software</h2>
+  <h2><svg class="icono" aria-hidden="true"><use href="#i-software"/></svg>Software</h2>
   <p>I release the code of my research as open-source software (MIT licence), with a DOI on Zenodo.</p>
   <ul class="software">
     <li>
@@ -268,7 +279,7 @@
 </section>
 
 <section id="teaching">
-  <h2>Teaching</h2>
+  <h2><svg class="icono" aria-hidden="true"><use href="#i-docencia"/></svg>Teaching</h2>
   <p>I teach in the BSc in Computer Engineering at the School of Computer Science in Ciudad Real.</p>
   <ul class="fechas">
     <li><span class="periodo">2026/27</span><div>Operating Systems I and Operating Systems II</div></li>
@@ -279,7 +290,7 @@
 </section>
 
 <section id="career">
-  <h2>Career</h2>
+  <h2><svg class="icono" aria-hidden="true"><use href="#i-trayectoria"/></svg>Career</h2>
   <h3>Positions</h3>
   <ul class="fechas">
     <li><span class="periodo">Oct 2026 – now</span><div>Postdoctoral researcher<span class="lugar">UCLM, AIR group · postdoctoral stage of the industrial doctorate contract</span></div></li>
@@ -300,7 +311,7 @@
 </section>
 
 <section id="awards">
-  <h2>Awards</h2>
+  <h2><svg class="icono" aria-hidden="true"><use href="#i-premios"/></svg>Awards</h2>
   <ul class="fechas">
     <li><span class="periodo">2024</span><div>Best Paper Award at NiDS 2024<span class="lugar">For our paper on fatigue detection in virtual reality rehabilitation</span></div></li>
     <li><span class="periodo">2023</span><div>Extraordinary Graduation Award (Premio Extraordinario Fin de Estudios)<span class="lugar">University of Castilla-La Mancha · BSc in Computer Engineering</span></div></li>
@@ -309,7 +320,7 @@
 </section>
 
 <section id="contact">
-  <h2>Contact</h2>
+  <h2><svg class="icono" aria-hidden="true"><use href="#i-contacto"/></svg>Contact</h2>
   <p>If you would like to collaborate on these topics, write to me at <a href="mailto:sergio.martinezcid@uclm.es">sergio.martinezcid@uclm.es</a>.</p>
   <p>School of Computer Science · University of Castilla-La Mancha<br>Paseo de la Universidad, 4 · 13071 Ciudad Real, Spain</p>
 </section>

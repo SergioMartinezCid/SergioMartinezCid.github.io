@@ -91,10 +91,17 @@ a:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-
   mask-image: linear-gradient(to right, #000 85%, transparent);
 }
 .menu ul::-webkit-scrollbar { display: none; }
-.menu a { color: var(--suave); text-decoration: none; font-size: 0.9rem; white-space: nowrap; }
+.menu a { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--suave); text-decoration: none; font-size: 0.9rem; white-space: nowrap; }
 .menu a:hover, .menu a[aria-current] { color: var(--acento); }
 
 .contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 1rem; }
+
+/* Iconos de las secciones: símbolos SVG definidos una vez al principio de cada página */
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.icono {
+  width: 1.1em; height: 1.1em; flex: none;
+  fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
 
 .contenedor > section:first-of-type { border-top: 0; }
 
@@ -122,7 +129,7 @@ a:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-
     flex-direction: column; gap: 0.15rem; max-width: none; margin: 0; padding: 0;
     overflow: visible; -webkit-mask-image: none; mask-image: none;
   }
-  .menu a { display: block; padding: 0.35rem 0.8rem; border-radius: 6px; font-size: 0.97rem; }
+  .menu a { display: flex; gap: 0.65rem; padding: 0.35rem 0.8rem; border-radius: 6px; font-size: 0.97rem; }
   .menu a:hover { background: var(--fondo); }
   .menu a[aria-current] { background: var(--acento-suave); font-weight: 600; }
   main, .pie { margin-left: var(--lateral); }
@@ -144,8 +151,8 @@ a:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-
 
 /* ---------- Secciones ---------- */
 section { padding: 2.25rem 0; border-top: 1px solid var(--linea); }
-h2 { font-size: 1.45rem; margin: 0 0 1.1rem; letter-spacing: -0.01em; }
-h2::before { content: ""; display: inline-block; width: 0.55rem; height: 0.55rem; background: var(--acento); border-radius: 2px; margin-right: 0.6rem; vertical-align: 0.15em; }
+h2 { display: flex; align-items: center; gap: 0.6rem; font-size: 1.45rem; margin: 0 0 1.1rem; letter-spacing: -0.01em; }
+h2 .icono { color: var(--acento); width: 1.05em; height: 1.05em; }
 h3 { font-size: 1.05rem; margin: 1.6rem 0 0.6rem; color: var(--suave); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
 p { margin: 0 0 1rem; }
 
