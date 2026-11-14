@@ -1,0 +1,157 @@
+/* Sergio Martínez Cid · web personal (ESI-UCLM)
+   Sin dependencias externas. Colores en variables: cambia aquí la paleta. */
+
+:root {
+  --fondo: #fbfaf8;
+  --fondo-alt: #f2efea;
+  --texto: #1d1c1f;
+  --suave: #5c5a62;
+  --linea: #e2ddd6;
+  --acento: #8a1538;        /* granate UCLM */
+  --acento-suave: #f5e6ea;
+  --ancho: 52rem;
+  --fuente: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #141416;
+    --fondo-alt: #1d1d21;
+    --texto: #ebeaee;
+    --suave: #a3a1ab;
+    --linea: #2f2e35;
+    --acento: #ec8aa2;
+    --acento-suave: #3a1e27;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+a { color: var(--acento); text-underline-offset: 0.15em; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-radius: 2px; }
+
+.saltar {
+  position: absolute; left: -999px; top: 0;
+  background: var(--acento); color: var(--fondo); padding: 0.5rem 1rem; z-index: 10;
+}
+.saltar:focus { left: 1rem; }
+
+.contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 1rem; }
+
+/* ---------- Menú ---------- */
+.menu {
+  position: sticky; top: 0; z-index: 5;
+  background: color-mix(in srgb, var(--fondo) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--linea);
+}
+.menu .contenedor { display: flex; align-items: center; }
+.menu ul {
+  display: flex; gap: 0.95rem; list-style: none; margin: 0; padding: 0.75rem 0;
+  overflow-x: auto; scrollbar-width: none; flex: 1;
+}
+.menu ul::-webkit-scrollbar { display: none; }
+.menu a { color: var(--suave); text-decoration: none; font-size: 0.88rem; white-space: nowrap; }
+/* En pantallas anchas, si no cabe, el menú baja a una segunda línea en vez de ocultar enlaces */
+@media (min-width: 48rem) { .menu ul { flex-wrap: wrap; row-gap: 0.25rem; overflow: visible; } }
+/* En el móvil el menú se desplaza en horizontal; el degradado indica que hay más */
+@media (max-width: 47.99rem) { .menu ul { -webkit-mask-image: linear-gradient(to right, #000 85%, transparent); mask-image: linear-gradient(to right, #000 85%, transparent); padding-right: 2rem; } }
+.menu a:hover { color: var(--texto); }
+.idioma {
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em;
+  border: 1px solid var(--linea); border-radius: 999px; padding: 0.15rem 0.6rem;
+  color: var(--texto); text-decoration: none; white-space: nowrap;
+}
+
+/* ---------- Cabecera ---------- */
+.cabecera { position: relative; padding: 3.5rem 0 2.5rem; display: grid; gap: 1.75rem; grid-template-columns: 1fr; align-items: center; }
+.cabecera:has(.foto) { grid-template-columns: auto 1fr; }
+.cabecera .idioma { position: absolute; top: 1.25rem; right: 0; }
+.foto { width: 9rem; height: 9rem; border-radius: 50%; object-fit: cover; border: 1px solid var(--linea); }
+.cabecera h1 { font-size: clamp(2rem, 6vw, 2.75rem); line-height: 1.15; margin: 0; letter-spacing: -0.02em; }
+.cargo { margin: 0.4rem 0 0; color: var(--suave); }
+.lema { margin: 1rem 0 0; font-size: 1.15rem; max-width: 38rem; }
+.enlaces { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.4rem 0 0; padding: 0; list-style: none; }
+.enlaces a {
+  display: inline-block; padding: 0.3rem 0.85rem; border-radius: 999px;
+  border: 1px solid var(--linea); background: var(--fondo-alt);
+  color: var(--texto); text-decoration: none; font-size: 0.92rem;
+}
+.enlaces a:hover { border-color: var(--acento); color: var(--acento); }
+
+@media (max-width: 34rem) {
+  .cabecera:has(.foto) { grid-template-columns: 1fr; }
+  .foto { width: 7rem; height: 7rem; }
+}
+
+/* ---------- Secciones ---------- */
+section { padding: 2.25rem 0; border-top: 1px solid var(--linea); }
+h2 { font-size: 1.45rem; margin: 0 0 1.1rem; letter-spacing: -0.01em; }
+h2::before { content: ""; display: inline-block; width: 0.55rem; height: 0.55rem; background: var(--acento); border-radius: 2px; margin-right: 0.6rem; vertical-align: 0.15em; }
+h3 { font-size: 1.05rem; margin: 1.6rem 0 0.6rem; color: var(--suave); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+p { margin: 0 0 1rem; }
+
+/* Listas con fecha a la izquierda (novedades, trayectoria, formación, premios) */
+.fechas { list-style: none; margin: 0; padding: 0; }
+.fechas li { display: grid; grid-template-columns: 9.5rem 1fr; gap: 1rem; padding: 0.55rem 0; }
+.fechas li + li { border-top: 1px dashed var(--linea); }
+.fechas time, .fechas .periodo { color: var(--suave); font-size: 0.92rem; font-variant-numeric: tabular-nums; padding-top: 0.1rem; }
+.fechas .lugar { display: block; color: var(--suave); font-size: 0.95rem; }
+@media (max-width: 34rem) {
+  .fechas li { grid-template-columns: 1fr; gap: 0.1rem; }
+}
+
+/* Temas */
+.temas { display: flex; flex-wrap: wrap; gap: 0.45rem; list-style: none; padding: 0; margin: 0 0 0.5rem; }
+.temas li { background: var(--acento-suave); color: var(--texto); border-radius: 999px; padding: 0.2rem 0.75rem; font-size: 0.9rem; }
+
+/* Proyectos */
+.proyectos { list-style: none; margin: 0; padding: 0; }
+.proyectos li { padding: 0.75rem 0; }
+.proyectos li + li { border-top: 1px dashed var(--linea); }
+.proyectos strong { display: block; }
+.dato { display: block; color: var(--suave); font-size: 0.93rem; margin-top: 0.15rem; }
+
+/* Publicaciones */
+.pubs { list-style: none; margin: 0; padding: 0; }
+.pubs li { padding: 0.8rem 0; }
+.pubs li + li { border-top: 1px dashed var(--linea); }
+.pubs .titulo { display: block; font-weight: 600; line-height: 1.4; }
+.pubs .autores { display: block; color: var(--suave); font-size: 0.94rem; }
+.pubs .autores strong { color: var(--texto); font-weight: 600; }
+.pubs .medio { display: block; font-size: 0.94rem; }
+.etiquetas { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.35rem; font-size: 0.8rem; }
+.etiquetas > * { border: 1px solid var(--linea); border-radius: 4px; padding: 0.05rem 0.45rem; text-decoration: none; }
+.etiquetas a { color: var(--acento); }
+.etiquetas .abierto { color: #1f7a4d; border-color: currentColor; }
+.etiquetas .premio { color: #9a6200; border-color: currentColor; font-weight: 600; }
+@media (prefers-color-scheme: dark) {
+  .etiquetas .abierto { color: #6fd3a0; }
+  .etiquetas .premio { color: #f2c063; }
+}
+
+/* Software */
+.software { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); list-style: none; margin: 0; padding: 0; }
+.software li { border: 1px solid var(--linea); border-radius: 10px; padding: 1rem 1.1rem; background: var(--fondo-alt); }
+.software strong { display: block; font-size: 1.05rem; }
+.software p { margin: 0.35rem 0 0.6rem; font-size: 0.95rem; }
+
+/* Pie */
+.pie { border-top: 1px solid var(--linea); padding: 2rem 0 3rem; color: var(--suave); font-size: 0.9rem; }
+.pie p { margin: 0 0 0.4rem; }
