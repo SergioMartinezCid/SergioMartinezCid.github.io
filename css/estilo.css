@@ -141,12 +141,23 @@ a:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-
   .portada .cargo { font-size: 1.15rem; margin-top: 0.75rem; }
   .contenedor > .portada + section { border-top: 1px solid var(--linea); }
 }
+/* Logos de la UCLM y la ESI: uno encima del otro, abajo del todo en la barra lateral,
+   solo en escritorio. En el móvil no se muestran (el pie ya enlaza a las dos). */
+.logos { display: none; }
+@media (min-width: 62rem) {
+  .logos { display: flex; flex-direction: column; align-items: flex-start; gap: 0.9rem; margin-top: auto; padding: 1.75rem 0 0 0.8rem; }
+  .logos a { display: block; border-radius: 4px; }
+  .logos img { display: block; width: auto; height: 1.25rem; }
+  .logos a + a img { height: 1.75rem; }
+  .logos a:hover img { opacity: 0.8; }
+}
 /* Pantallas anchas pero bajas: barra más compacta para que quepa el menú */
 @media (min-width: 62rem) and (max-height: 50rem) {
   .lateral { padding-top: 1.75rem; }
   .foto { width: 6rem; height: 6rem; margin-bottom: 0.9rem; }
   .menu { margin-top: 1.1rem; }
   .menu a { padding: 0.25rem 0.8rem; }
+  .logos { padding-top: 1.1rem; gap: 0.7rem; }
 }
 
 /* ---------- Secciones ---------- */
